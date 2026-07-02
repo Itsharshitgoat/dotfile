@@ -1,0 +1,259 @@
+PROMPT='%F{white}%1~%f %F{238}│%f%F{244}│%f%F{250}│%f %F{white}❯%f '
+
+
+# Added by Antigravity CLI installer
+export PATH="/Users/xlr-01/.local/bin:$PATH"
+export PATH="/Users/xlr-01/.local/bin:$PATH"
+export PATH="/usr/local/mysql/bin:$PATH"
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+
+# ~/.zshrc
+
+# ==================================================
+# HOMEBREW
+# ==================================================
+
+if [[ -x /opt/homebrew/bin/brew ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [[ -x /usr/local/bin/brew ]]; then
+    eval "$(/usr/local/bin/brew shellenv)"
+fi
+
+# ==================================================
+# PATHS
+# ==================================================
+
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
+
+# Python
+export PATH="$(brew --prefix python)/libexec/bin:$PATH"
+
+# Java
+export PATH="$(brew --prefix openjdk)/bin:$PATH"
+
+# Rust
+export PATH="$HOME/.cargo/bin:$PATH"
+
+# Node
+export PATH="./node_modules/.bin:$PATH"
+
+# ==================================================
+# HISTORY
+# ==================================================
+
+HISTSIZE=100000
+SAVEHIST=100000
+HISTFILE=~/.zsh_history
+
+setopt APPEND_HISTORY
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+setopt EXTENDED_HISTORY
+
+# ==================================================
+# AUTOCOMPLETE
+# ==================================================
+
+autoload -Uz compinit
+compinit
+
+# ==================================================
+# QUICK NAVIGATION
+# ==================================================
+
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+
+alias home='cd ~'
+alias desk='cd ~/Desktop'
+alias docs='cd ~/Documents'
+alias dl='cd ~/Downloads'
+alias dev='cd ~/Developer'
+
+# ==================================================
+# FILE OPERATIONS
+# ==================================================
+
+alias ll='ls -lah'
+alias la='ls -A'
+alias l='ls -CF'
+
+alias c='clear'
+
+alias mkdirp='mkdir -p'
+
+# Open current folder in Finder
+alias finder='open .'
+
+# Show hidden files
+alias showfiles='defaults write com.apple.finder AppleShowAllFiles YES && killall Finder'
+alias hidefiles='defaults write com.apple.finder AppleShowAllFiles NO && killall Finder'
+
+# ==================================================
+# SEARCH
+# ==================================================
+
+alias f='find . -iname'
+
+# Usage:
+# f myfile.txt
+
+# ==================================================
+# DISK / SYSTEM
+# ==================================================
+
+alias df='df -h'
+alias du='du -sh'
+
+alias ports='lsof -i -P'
+
+alias myip='curl ifconfig.me'
+
+alias flushdns='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
+
+# ==================================================
+# GIT
+# ==================================================
+
+alias gs='git status'
+alias ga='git add .'
+alias gc='git commit -m'
+alias gp='git push'
+alias gl='git pull'
+alias gco='git checkout'
+alias gb='git branch'
+
+# ==================================================
+# HOMEBREW
+# ==================================================
+
+alias bi='brew install'
+alias bs='brew search'
+alias bu='brew update && brew upgrade'
+alias cleanup='brew cleanup'
+
+# ==================================================
+# PYTHON
+# ==================================================
+
+alias py='python3'
+alias pip='pip3'
+
+alias makevenv='python3 -m venv .venv'
+alias activate='source .venv/bin/activate'
+
+openvenv() {
+    if [ -f ".venv/bin/activate" ]; then
+        source .venv/bin/activate
+        echo "🚀 Virtual environment activated!"
+    elif [ -f "venv/bin/activate" ]; then
+        source venv/bin/activate
+        echo "🚀 Virtual environment activated!"
+    else
+        echo "❌ No .venv or venv found in this directory."
+    fi
+}
+
+# ==================================================
+# NODE
+# ==================================================
+
+alias ni='npm install'
+alias nr='npm run'
+alias ns='npm start'
+
+# ==================================================
+# RUST
+# ==================================================
+
+alias cargoi='cargo install'
+alias cargob='cargo build'
+alias cargor='cargo run'
+alias cargot='cargo test'
+
+# ==================================================
+# JAVA
+# ==================================================
+
+alias javacv='javac -version'
+
+# ==================================================
+# YT-DLP
+# ==================================================
+
+alias yt='yt-dlp'
+
+# Download best video
+alias ytv='yt-dlp -f "bv*+ba/b"'
+
+# Download MP3
+alias yta='yt-dlp -x --audio-format mp3'
+
+# ==================================================
+# NETWORK
+# ==================================================
+
+alias pingg='ping google.com'
+
+# ==================================================
+# PROCESS MANAGEMENT
+# ==================================================
+
+alias psg='ps aux | grep'
+
+# Kill process by port:
+# killport 3000
+killport() {
+  lsof -ti:$1 | xargs kill -9
+}
+
+# ==================================================
+# EXTRACT ARCHIVES
+# ==================================================
+
+extract () {
+  if [ -f "$1" ]; then
+    case "$1" in
+      *.tar.bz2) tar xjf "$1" ;;
+      *.tar.gz)  tar xzf "$1" ;;
+      *.bz2)     bunzip2 "$1" ;;
+      *.rar)     unrar x "$1" ;;
+      *.gz)      gunzip "$1" ;;
+      *.tar)     tar xf "$1" ;;
+      *.tbz2)    tar xjf "$1" ;;
+      *.tgz)     tar xzf "$1" ;;
+      *.zip)     unzip "$1" ;;
+      *.7z)      7z x "$1" ;;
+      *) echo "Cannot extract $1" ;;
+    esac
+  fi
+}
+
+# ==================================================
+# CREATE + ENTER DIRECTORY
+# ==================================================
+
+mkcd() {
+    mkdir -p "$1" && cd "$1"
+}
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/opt/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
