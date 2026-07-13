@@ -158,6 +158,8 @@ openvenv() {
     fi
 }
 
+alias close='deactivate'
+
 # ==================================================
 # NODE
 # ==================================================
@@ -257,3 +259,8 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+# ==================================================
+# Ollama claude
+# ==================================================
+
+alias oclaude='ollama launch claude --model minimax-m3:cloud'
