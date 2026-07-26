@@ -1,0 +1,146 @@
+0. defaults write -g ApplePressAndHoldEnabled -bool false
+
+1. touch ~/.vimrc
+
+2. curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+3. vim ~/.vimrc
+
+4. =====================================================================================================================
+
+" ==========================
+" Plugin Manager (vim-plug)
+" ==========================
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'morhetz/gruvbox'
+Plug 'preservim/nerdtree'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+
+call plug#end()
+
+" ==========================
+" Appearance
+" ==========================
+
+syntax on
+set termguicolors
+set background=dark
+colorscheme gruvbox
+
+" ==========================
+" Line Numbers
+" ==========================
+
+set number
+" DO NOT add: set relativenumber
+
+" ==========================
+" General
+" ==========================
+
+filetype plugin indent on
+set cursorline
+set showmatch
+set mouse=a
+set clipboard=unnamedplus
+set scrolloff=8
+set sidescrolloff=8
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set smartindent
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+set splitbelow
+set splitright
+set undofile
+set updatetime=300
+set timeoutlen=500
+
+let mapleader=" "
+
+" ==========================
+" WASD Navigation
+" ==========================
+
+nnoremap w k
+nnoremap a h
+nnoremap s j
+nnoremap d l
+
+vnoremap w k
+vnoremap a h
+vnoremap s j
+vnoremap d l
+
+onoremap w k
+onoremap a h
+onoremap s j
+onoremap d l
+
+" Enter Insert Mode
+nnoremap e i
+nnoremap E I
+
+" Exit Insert Mode
+inoremap qq <Esc>
+
+" ==========================
+" Save / Quit
+" ==========================
+
+nnoremap <leader>w :w<CR>
+nnoremap <leader>q :q<CR>
+nnoremap <leader>x :x<CR>
+
+" ==========================
+" Window Navigation
+" ==========================
+
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" ==========================
+" NERDTree
+" ==========================
+
+nnoremap <leader>n :NERDTreeToggle<CR>
+
+" ==========================
+" Airline
+" ==========================
+
+let g:airline_theme='gruvbox'
+
+" ==========================
+" Clear Search Highlight
+" ==========================
+
+nnoremap <Esc> :nohlsearch<CR><Esc>
+
+" ==========================
+" Remove Trailing Spaces
+" ==========================
+
+autocmd BufWritePre * %s/\s\+$//e
+
+=======================================================================================================================
+
+5. vim
+
+6. :PlugInstall
+
+==================================================> Done <=============================================================
