@@ -158,7 +158,7 @@ openvenv() {
     fi
 }
 
-alias close='deactivate'
+alias closevenv='deactivate'
 
 # ==================================================
 # NODE
