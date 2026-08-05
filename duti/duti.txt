@@ -1,0 +1,68 @@
+=========================================================================================================================
+
+brew install duti
+
+=========================================================================================================================
+
+osascript -e 'id of app "Visual Studio Code"'
+
+=========================================================================================================================
+
+BUNDLE="com.microsoft.VSCode"
+
+for ext in \
+c cpp cc cxx h hpp hh hxx \
+m mm \
+swift \
+java kt kts \
+py pyw \
+js jsx mjs cjs \
+ts tsx \
+go rs \
+rb php pl pm \
+lua r \
+cs fs fsx vb \
+scala groovy \
+dart \
+sh bash zsh fish \
+ps1 \
+sql \
+json jsonc \
+yaml yml \
+toml ini cfg conf \
+xml xsd xsl \
+html htm css scss sass less \
+md markdown \
+tex \
+dockerfile \
+make mk \
+cmake \
+gradle properties \
+env \
+vim \
+erl ex exs \
+clj cljs edn \
+nim zig \
+asm s \
+f90 f95 \
+jl \
+graphql gql \
+proto; do
+    duti -s "$BUNDLE" ".$ext" all
+done
+
+=========================================================================================================================
+
+duti -s com.microsoft.VSCode public.source-code all
+duti -s com.microsoft.VSCode public.script all
+duti -s com.microsoft.VSCode public.shell-script all
+duti -s com.microsoft.VSCode public.json all
+duti -s com.microsoft.VSCode public.xml all
+duti -s com.microsoft.VSCode public.plain-text all
+
+=========================================================================================================================
+
+duti -s com.microsoft.VSCode public.plain-text all
+duti -s com.microsoft.VSCode public.text all
+
+=========================================================================================================================
